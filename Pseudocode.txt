@@ -1,0 +1,60 @@
+===========================================
+PSEUDOCODE: Infix to Postfix & Prefix Converter
+Language: Java
+===========================================
+
+ALGORITHM 1: Infix to Postfix
+-------------------------------------------
+1. START
+2. Create empty stack called 'operators'
+3. Create empty string called 'postfix'
+4. FOR each character 'ch' in input expression:
+   
+   IF 'ch' is a letter or number:
+      Add 'ch' to postfix
+   
+   ELSE IF 'ch' is '(':
+      Push 'ch' onto stack
+   
+   ELSE IF 'ch' is ')':
+      WHILE stack top is not '(':
+         Pop and add to postfix
+      Pop '(' from stack
+   
+   ELSE IF 'ch' is operator (+, -, *, /, ^):
+      WHILE stack not empty AND precedence(top) >= precedence(ch):
+         Pop and add to postfix
+      Push 'ch' onto stack
+
+5. WHILE stack not empty:
+   Pop and add to postfix
+
+6. RETURN postfix
+7. END
+
+ALGORITHM 2: Infix to Prefix
+-------------------------------------------
+1. START
+2. Reverse the infix expression
+3. Swap '(' with ')' and vice versa
+4. Convert to postfix using Algorithm 1
+5. Reverse the result
+6. RETURN reversed result
+7. END
+
+PRECEDENCE RULES:
+-------------------------------------------
+- '+' and '-' : level 1 (lowest)
+- '*' and '/' : level 2
+- '^'        : level 3 (highest)
+
+EXAMPLE (A+B*C):
+-------------------------------------------
+Input: A+B*C
+Step 1: Read A → Output: A
+Step 2: Read + → Stack: +
+Step 3: Read B → Output: AB
+Step 4: Read * → Stack: +*
+Step 5: Read C → Output: ABC
+Step 6: Pop all → ABC*+
+Result: Postfix = ABC*+, Prefix = +A*BC
