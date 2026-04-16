@@ -18,3 +18,4 @@ This program converts mathematical expressions from **infix notation** (standard
 ### Compile:
 ```bash
 javac ExpressionConverter.java
+![image](flowchart.png
